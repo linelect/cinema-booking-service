@@ -1,11 +1,25 @@
 package com.linelect.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "tickets")
 public class Ticket extends BaseEntity {
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "event_id", nullable = false)
     private Event event;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "auditoriumSeat_id", nullable = false)
     private AuditoriumSeat auditoriumSeat;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Column(name = "payed", nullable = false)
     private boolean payed;
 
     public Ticket() {

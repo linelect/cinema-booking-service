@@ -1,9 +1,16 @@
 package com.linelect.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "auditoriums")
 public class Auditorium extends NamedEntity {
+
+    @Column(name = "numberOfSeats")
     private int numberOfSeats;
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "auditorium")
     private List<AuditoriumSeat> seatList;
 
     public Auditorium() {

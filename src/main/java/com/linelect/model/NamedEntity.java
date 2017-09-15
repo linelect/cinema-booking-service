@@ -1,6 +1,12 @@
 package com.linelect.model;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class NamedEntity extends BaseEntity{
+
+    @Column(name = "name", nullable = false)
     protected String name;
 
     public NamedEntity() {

@@ -1,9 +1,24 @@
 package com.linelect.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "events")
 public class Event extends NamedEntity {
+
+    @Column(name = "price", nullable = false)
+    @NotNull
     private double price;
+
+    @Column(name = "date_time", nullable = false)
+    @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateTime;
 
     public Event() {
