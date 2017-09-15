@@ -9,5 +9,5 @@ public interface AuditoriumService {
 
     Auditorium getById(int id);
 
-    int getNumberOfSeats();
+    int getNumberOfSeats(int id);
 }

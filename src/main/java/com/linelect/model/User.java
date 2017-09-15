@@ -29,6 +29,11 @@ public class User extends NamedEntity {
         this.email = email;
     }
 
+    protected User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
     public String getEmail() {
         return email;
     }

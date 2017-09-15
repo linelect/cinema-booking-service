@@ -2,10 +2,12 @@ package com.linelect.service.impl;
 
 import com.linelect.model.*;
 import com.linelect.service.BookingService;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class BookingServiceImpl implements BookingService {
     @Override
     public double getTicketsPrice(Event event, LocalDateTime dateTime, User user, List<AuditoriumSeat> seats) {

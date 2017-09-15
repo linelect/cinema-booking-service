@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 @Table(name = "tickets")
 public class Ticket extends BaseEntity {
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "auditoriumSeat_id", nullable = false)
     private AuditoriumSeat auditoriumSeat;
 

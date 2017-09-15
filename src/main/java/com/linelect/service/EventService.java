@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface EventService {
-    boolean save();
+    Event save(Event event);
 
-    boolean remove();
+    void remove(int id);
 
-    Event getById();
+    Event getById(int id);
 
-    Event getByName();
+    Event getByName(String name);
 
     List<Event> getAll();
 

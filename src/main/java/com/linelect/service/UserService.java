@@ -4,13 +4,13 @@ import com.linelect.model.User;
 import java.util.List;
 
 public interface UserService {
-    boolean save();
+    User save(User user);
 
-    boolean remove();
+    void remove(int id);
 
     User getById(int id);
 
-    User getByEmail();
+    User getByEmail(String email);
 
     List<User> getAll();
 }
