@@ -1,16 +1,8 @@
 package com.linelect.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-
-@Entity
-@Table(name = "users")
 public class User extends NamedEntity {
-    @Column(name = "email", nullable = false, unique = true)
-    @Email
+
     private String email;
 
     //ToDo
@@ -40,5 +32,14 @@ public class User extends NamedEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
