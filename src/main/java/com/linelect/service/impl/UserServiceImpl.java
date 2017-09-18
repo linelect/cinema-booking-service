@@ -1,7 +1,7 @@
 package com.linelect.service.impl;
 
 import com.linelect.model.User;
-import com.linelect.repository.UserRepository;
+import com.linelect.dao.UserDAO;
 import com.linelect.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,31 +12,30 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
-
+    private UserDAO userDAO;
 
     @Override
     public User save(User user) {
-        return userRepository.saveAndFlush(user);
+        return userDAO.save(user);
     }
 
     @Override
     public void remove(int id) {
-        userRepository.delete(id);
+        userDAO.delete(id);
     }
 
     @Override
     public User getById(int id) {
-        return userRepository.getOne(id);
+        return userDAO.getById(id);
     }
 
     @Override
     public User getByEmail(String email) {
-        return null;
+        return userDAO.getByEmail(email);
     }
 
     @Override
     public List<User> getAll() {
-        return userRepository.findAll();
+        return userDAO.getAll();
     }
 }

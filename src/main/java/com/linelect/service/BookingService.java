@@ -6,9 +6,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface BookingService {
-    double getTicketsPrice(Event event, LocalDateTime dateTime, User user, List<AuditoriumSeat> seats);
+    double getTicketsPrice(Event event, User user);
 
-    Ticket bookTicket(Event event, int numberOfSeat, int row, SeatType seatType);
+    double getTicketsPrice(Event event);
+
+    Ticket bookTicket(User user, Event event, int numberOfSeat, int row, SeatType seatType);
 
     List<Ticket> getPurchasedTicketsForEvent(Event event);
 }

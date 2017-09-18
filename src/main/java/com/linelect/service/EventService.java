@@ -1,6 +1,7 @@
 package com.linelect.service;
 
 import com.linelect.model.Event;
+import com.linelect.model.Ticket;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +17,7 @@ public interface EventService {
 
     List<Event> getAll();
 
-    List<Event> getForDateTimeRange(LocalDateTime fromDateTime, LocalDateTime DateTime);
+    List<Event> getForDateTimeRange(LocalDateTime fromDateTime, LocalDateTime toDateTime);
 
     List<Event> getNextEvents(LocalDateTime dateTime);
 }

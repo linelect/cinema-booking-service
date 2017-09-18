@@ -1,7 +1,7 @@
 package com.linelect.service.impl;
 
 import com.linelect.model.Auditorium;
-import com.linelect.repository.AuditoriumRepository;
+import com.linelect.dao.AuditoriumDAO;
 import com.linelect.service.AuditoriumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,20 +12,21 @@ import java.util.List;
 public class AuditoriumServiceImpl implements AuditoriumService {
 
     @Autowired
-    private AuditoriumRepository auditoriumRepository;
+    private AuditoriumDAO auditoriumDAO;
+
 
     @Override
     public List<Auditorium> getAll() {
-        return auditoriumRepository.findAll();
+        return auditoriumDAO.getAll();
     }
 
     @Override
     public Auditorium getById(int id) {
-        return auditoriumRepository.findOne(id);
+        return auditoriumDAO.getById(id);
     }
 
     @Override
     public int getNumberOfSeats(int id) {
-        return 0;
+        return auditoriumDAO.getById(id).getNumberOfSeats();
     }
 }
