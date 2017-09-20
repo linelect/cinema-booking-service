@@ -2,7 +2,6 @@ package com.linelect.model;
 
 public class BaseEntity {
 
-
     protected Integer id;
 
     protected BaseEntity(int id) {

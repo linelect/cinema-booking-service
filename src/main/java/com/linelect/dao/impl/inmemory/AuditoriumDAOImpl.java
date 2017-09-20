@@ -1,4 +1,4 @@
-package com.linelect.dao.impl;
+package com.linelect.dao.impl.inmemory;
 
 import com.linelect.dao.AuditoriumDAO;
 import com.linelect.dao.InMemoryDataBaseSimulator;

@@ -1,7 +1,9 @@
 package com.linelect;
 
+import com.linelect.dao.AuditoriumDAO;
 import com.linelect.dao.InMemoryDataBaseSimulator;
 import com.linelect.model.*;
+import com.linelect.service.AuditoriumService;
 import com.linelect.service.EventService;
 import com.linelect.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 @Component
 public class EntryPoint {
@@ -43,15 +47,42 @@ public class EntryPoint {
     @Qualifier("ticket1")
     private Ticket ticket1;
 
+    @Autowired
+    private AuditoriumService auditoriumService;
+
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new AnnotationConfigApplicationContext("com.linelect");
         context.start();
 
         EntryPoint entryPoint = context.getBean(EntryPoint.class);
-        entryPoint.initTestData();
-        entryPoint.userService.getAll().forEach(System.out::println);
-        entryPoint.eventService.getAll().forEach(System.out::println);
+//        User user = new User();
+////        user.setId(1);
+//        user.setName("User updated");
+//        user.setEmail("user1@gmail.com");
+//
+//        User user3 = entryPoint.userService.add(user);
+//        System.out.println(user3);
+//        entryPoint.userService.getAll().forEach(System.out::println);
+//        System.out.println(entryPoint.userService.getById(3));
 
+        Auditorium auditorium = new Auditorium();
+//        auditorium.setId(1);
+        auditorium.setName("Auditorium 1");
+        auditorium.setNumberOfSeats(30);
+
+        entryPoint.auditoriumService.add(auditorium);
+        entryPoint.auditoriumService.getAll().forEach(System.out::println);
+        System.out.println("------------");
+
+        Event event = new Event();
+        event.setId(1);
+        event.setName("Evcent 1");
+        event.setDateTime(LocalDateTime.now());
+        event.setAuditorium(auditorium);
+        event.setPrice(100.0);
+
+//        entryPoint.eventService.add(event);
+        entryPoint.eventService.getAll().forEach(System.out::println);
     }
 
     public void initTestData() {

@@ -7,6 +7,29 @@
     <groupId>com.linelect</groupId>
     <artifactId>parking-service</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <spring.version>4.3.10.RELEASE</spring.version>
+        <postgresql.version>42.1.4</postgresql.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -19,55 +42,5 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <spring.version>4.3.10.RELEASE</spring.version>
-        <postgresql.vervion>42.1.4</postgresql.vervion>
-        <spring.data>1.11.7.RELEASE</spring.data>
-        <hb.manager>5.2.11.Final</hb.manager>
-        <hibernate-validator.version>6.0.2.Final</hibernate-validator.version>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-webmvc</artifactId>-->
-            <!--<version>${spring.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.postgresql</groupId>-->
-        <!--<artifactId>postgresql</artifactId>-->
-        <!--<version>${postgresql.vervion}</version>-->
-    <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.data</groupId>-->
-            <!--<artifactId>spring-data-jpa</artifactId>-->
-            <!--<version>${spring.data}</version>-->
-        <!--</dependency>-->
-        <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-            <!--&lt;!&ndash;<groupId>org.hibernate</groupId>&ndash;&gt;-->
-            <!--&lt;!&ndash;<artifactId>hibernate-core</artifactId>&ndash;&gt;-->
-            <!--&lt;!&ndash;<version>${hb.manager}</version>&ndash;&gt;-->
-        <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-validator</artifactId>-->
-            <!--<version>${hibernate-validator.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-entitymanager</artifactId>-->
-            <!--<version>4.1.9.Final</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>javax.servlet</groupId>-->
-            <!--<artifactId>javax.servlet-api</artifactId>-->
-            <!--<version>4.0.0</version>-->
-            <!--<scope>provided</scope>-->
-        <!--</dependency>-->
-    </dependencies>
 
 </project>

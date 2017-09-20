@@ -14,6 +14,10 @@ public class AuditoriumServiceImpl implements AuditoriumService {
     @Autowired
     private AuditoriumDAO auditoriumDAO;
 
+    @Override
+    public Auditorium add(Auditorium auditorium) {
+        return auditoriumDAO.add(auditorium);
+    }
 
     @Override
     public List<Auditorium> getAll() {

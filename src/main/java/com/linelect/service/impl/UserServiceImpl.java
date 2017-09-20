@@ -20,6 +20,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User add(User user) {
+        return userDAO.add(user);
+    }
+
+    @Override
     public void remove(int id) {
         userDAO.delete(id);
     }

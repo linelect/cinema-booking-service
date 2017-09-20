@@ -18,7 +18,7 @@ public interface EventDAO {
 
     Event getByName(String name);
 
-    List<Event> getForDateTimeRange(LocalDateTime fromDateTime, LocalDateTime DateTime);
+    List<Event> getForDateTimeRange(LocalDateTime fromDateTime, LocalDateTime toDateTime);
 
     List<Event> getNextEvents(LocalDateTime dateTime);
 

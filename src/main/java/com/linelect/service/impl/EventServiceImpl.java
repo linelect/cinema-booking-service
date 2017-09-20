@@ -23,6 +23,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public Event add(Event event) {
+        return eventDAO.add(event);
+    }
+
+    @Override
     public void remove(int id) {
         eventDAO.delete(id);
     }
