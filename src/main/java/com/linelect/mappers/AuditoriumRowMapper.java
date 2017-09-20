@@ -1,4 +1,4 @@
-package com.linelect.dao.impl.mappers;
+package com.linelect.mappers;
 
 import com.linelect.model.Auditorium;
 import org.springframework.jdbc.core.RowMapper;

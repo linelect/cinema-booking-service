@@ -1,10 +1,8 @@
 package com.linelect.dao.impl.jdbc;
 
 import com.linelect.dao.EventDAO;
-import com.linelect.dao.impl.mappers.EventRowMapper;
-import com.linelect.dao.impl.mappers.UserRowMapper;
+import com.linelect.mappers.EventRowMapper;
 import com.linelect.model.Event;
-import com.linelect.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,7 +1,7 @@
 package com.linelect.dao.impl.jdbc;
 
 import com.linelect.dao.AuditoriumDAO;
-import com.linelect.dao.impl.mappers.AuditoriumRowMapper;
+import com.linelect.mappers.AuditoriumRowMapper;
 import com.linelect.model.Auditorium;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

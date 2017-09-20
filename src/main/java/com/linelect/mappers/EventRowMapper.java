@@ -1,4 +1,4 @@
-package com.linelect.dao.impl.mappers;
+package com.linelect.mappers;
 
 import com.linelect.dao.AuditoriumDAO;
 import com.linelect.dao.UserDAO;
@@ -14,12 +14,14 @@ import java.sql.SQLException;
 @Component
 public class EventRowMapper implements RowMapper<Event> {
 
+    //    test inject another bean
     @Autowired
     private AuditoriumService auditoriumService;
 
     @Autowired
     private AuditoriumDAO auditoriumDAO;
 
+//    test inject another bean
     @Autowired
     private UserDAO userDAO;
 
@@ -30,7 +32,7 @@ public class EventRowMapper implements RowMapper<Event> {
         event.setName(resultSet.getString("name"));
         event.setPrice(resultSet.getDouble("price"));
         event.setDateTime(resultSet.getTimestamp("date_time").toLocalDateTime());
-        event.setAuditorium(auditoriumService.getById(resultSet.getInt("auditorium_id")));
+//        event.setAuditorium(auditoriumDAO.getById(resultSet.getInt("auditorium_id")));
         return event;
     }
 }

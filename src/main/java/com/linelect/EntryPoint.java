@@ -55,33 +55,20 @@ public class EntryPoint {
         context.start();
 
         EntryPoint entryPoint = context.getBean(EntryPoint.class);
-//        User user = new User();
-////        user.setId(1);
-//        user.setName("User updated");
-//        user.setEmail("user1@gmail.com");
-//
-//        User user3 = entryPoint.userService.add(user);
-//        System.out.println(user3);
-//        entryPoint.userService.getAll().forEach(System.out::println);
-//        System.out.println(entryPoint.userService.getById(3));
 
         Auditorium auditorium = new Auditorium();
-//        auditorium.setId(1);
         auditorium.setName("Auditorium 1");
         auditorium.setNumberOfSeats(30);
-
         entryPoint.auditoriumService.add(auditorium);
-        entryPoint.auditoriumService.getAll().forEach(System.out::println);
+//        entryPoint.auditoriumService.getAll().forEach(System.out::println);
         System.out.println("------------");
 
         Event event = new Event();
-        event.setId(1);
-        event.setName("Evcent 1");
+        event.setName("Event 1");
         event.setDateTime(LocalDateTime.now());
         event.setAuditorium(auditorium);
         event.setPrice(100.0);
 
-//        entryPoint.eventService.add(event);
         entryPoint.eventService.getAll().forEach(System.out::println);
     }
 

@@ -1,7 +1,7 @@
 package com.linelect.dao.impl.jdbc;
 
 import com.linelect.dao.UserDAO;
-import com.linelect.dao.impl.mappers.UserRowMapper;
+import com.linelect.mappers.UserRowMapper;
 import com.linelect.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

@@ -23,3 +23,23 @@ CREATE TABLE IF NOT EXISTS auditoriums
   number_seats INT
 );
 CREATE UNIQUE INDEX auditoriums_id_uindex ON auditoriums (id);
+
+CREATE TABLE auditorium_seats
+(
+  id SERIAL PRIMARY KEY NOT NULL,
+  auditorium_id INT NOT NULL,
+  number INT,
+  seat_row INT,
+  seat_type VARCHAR(50)
+);
+CREATE UNIQUE INDEX auditorium_seats_id_uindex ON auditorium_seats (id);
+
+CREATE TABLE tickets
+(
+  id SERIAL PRIMARY KEY NOT NULL,
+  event_id INT NOT NULL,
+  auditorium_seat_id INT NOT NULL,
+  user_id INT NOT NULL,
+  payed BOOLEAN NOT NULL
+);
+CREATE UNIQUE INDEX tickets_id_uindex ON tickets (id);

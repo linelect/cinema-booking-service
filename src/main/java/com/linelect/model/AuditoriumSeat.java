@@ -33,6 +33,22 @@ public class AuditoriumSeat extends BaseEntity {
         return seatType;
     }
 
+    public void setAuditorium(Auditorium auditorium) {
+        this.auditorium = auditorium;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setSeatType(SeatType seatType) {
+        this.seatType = seatType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

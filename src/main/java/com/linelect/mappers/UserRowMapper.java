@@ -1,4 +1,4 @@
-package com.linelect.dao.impl.mappers;
+package com.linelect.mappers;
 
 import com.linelect.model.User;
 import org.springframework.jdbc.core.RowMapper;
