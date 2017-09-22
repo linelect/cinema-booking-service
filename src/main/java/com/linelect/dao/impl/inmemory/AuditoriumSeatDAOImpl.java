@@ -1,7 +1,7 @@
 package com.linelect.dao.impl.inmemory;
 
 import com.linelect.dao.AuditoriumSeatDAO;
-import com.linelect.dao.InMemoryDataBaseSimulator;
+import com.linelect.InMemoryDataBaseSimulator;
 import com.linelect.model.Auditorium;
 import com.linelect.model.AuditoriumSeat;
 import com.linelect.model.SeatType;

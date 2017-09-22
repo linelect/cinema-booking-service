@@ -19,8 +19,7 @@ CREATE UNIQUE INDEX events_id_uindex ON events (id);
 CREATE TABLE IF NOT EXISTS auditoriums
 (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(200),
-  number_seats INT
+  name VARCHAR(200)
 );
 CREATE UNIQUE INDEX auditoriums_id_uindex ON auditoriums (id);
 

@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Auditorium extends NamedEntity {
 
-    private int numberOfSeats;
     private List<AuditoriumSeat> seatList;
 
     public Auditorium() {
@@ -13,46 +12,44 @@ public class Auditorium extends NamedEntity {
 
     protected Auditorium(int id, String name, int numberOfSeats) {
         super(id, name);
-        this.numberOfSeats = numberOfSeats;
     }
 
     public int getNumberOfSeats() {
-        return numberOfSeats;
-    }
-
-    public void setNumberOfSeats(int numberOfSeats) {
-        this.numberOfSeats = numberOfSeats;
+        return this.seatList == null ? 0 : this.seatList.size();
     }
 
     public List<AuditoriumSeat> getSeatList() {
         return seatList;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Auditorium)) return false;
-
-        Auditorium that = (Auditorium) o;
-
-        if (numberOfSeats != that.numberOfSeats) return false;
-        return seatList != null ? seatList.equals(that.seatList) : that.seatList == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = numberOfSeats;
-        result = 31 * result + (seatList != null ? seatList.hashCode() : 0);
-        return result;
+    public void setSeatList(List<AuditoriumSeat> seatList) {
+        this.seatList = seatList;
     }
 
     @Override
     public String toString() {
         return "Auditorium{" +
-                "numberOfSeats=" + numberOfSeats +
-                ", seatList=" + seatList +
+                "seatList=" + seatList +
                 ", name='" + name + '\'' +
                 ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Auditorium)) return false;
+        if (!super.equals(o)) return false;
+
+        Auditorium that = (Auditorium) o;
+
+        return seatList != null ? seatList.equals(that.seatList) : that.seatList == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (seatList != null ? seatList.hashCode() : 0);
+        return result;
     }
 }

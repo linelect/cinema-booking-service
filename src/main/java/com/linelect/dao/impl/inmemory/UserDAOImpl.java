@@ -1,6 +1,6 @@
 package com.linelect.dao.impl.inmemory;
 
-import com.linelect.dao.InMemoryDataBaseSimulator;
+import com.linelect.InMemoryDataBaseSimulator;
 import com.linelect.dao.UserDAO;
 import com.linelect.model.User;
 import org.springframework.stereotype.Component;

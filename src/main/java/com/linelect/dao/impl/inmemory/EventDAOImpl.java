@@ -1,9 +1,8 @@
 package com.linelect.dao.impl.inmemory;
 
 import com.linelect.dao.EventDAO;
-import com.linelect.dao.InMemoryDataBaseSimulator;
+import com.linelect.InMemoryDataBaseSimulator;
 import com.linelect.model.Event;
-import com.linelect.model.Ticket;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

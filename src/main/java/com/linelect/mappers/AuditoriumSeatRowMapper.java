@@ -3,18 +3,18 @@ package com.linelect.mappers;
 import com.linelect.dao.AuditoriumDAO;
 import com.linelect.model.AuditoriumSeat;
 import com.linelect.model.SeatType;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component
 public class AuditoriumSeatRowMapper implements RowMapper<AuditoriumSeat> {
 
-    @Autowired
     private AuditoriumDAO auditoriumDAO;
+
+    public AuditoriumSeatRowMapper(AuditoriumDAO auditoriumDAO) {
+        this.auditoriumDAO = auditoriumDAO;
+    }
 
     @Override
     public AuditoriumSeat mapRow(ResultSet resultSet, int i) throws SQLException {

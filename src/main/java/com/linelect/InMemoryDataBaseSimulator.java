@@ -1,4 +1,4 @@
-package com.linelect.dao;
+package com.linelect;
 
 import com.linelect.model.*;
 import org.springframework.beans.factory.annotation.Autowired;

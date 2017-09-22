@@ -1,6 +1,7 @@
 package com.linelect.dao.impl.jdbc;
 
 import com.linelect.dao.AuditoriumDAO;
+import com.linelect.dao.AuditoriumSeatDAO;
 import com.linelect.mappers.AuditoriumRowMapper;
 import com.linelect.model.Auditorium;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +22,29 @@ public class AuditoriumJdbcDAOImpl implements AuditoriumDAO{
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private AuditoriumSeatDAO auditoriumSeatDAO;
+
     @Override
     public List<Auditorium> getAll() {
-        String sqlquery = "Select * from auditoriums";
-        return jdbcTemplate.query(sqlquery, new AuditoriumRowMapper());
+        String sqlQuery = "Select * from auditoriums";
+        return jdbcTemplate.query(sqlQuery, new AuditoriumRowMapper(auditoriumSeatDAO));
     }
 
     @Override
     public Auditorium getById(int id) {
-        String sqlquery = "Select * from auditoriums WHERE id = ?";
-        List<Auditorium> auditoriums = jdbcTemplate.query(sqlquery, new Object[]{id}, new AuditoriumRowMapper());
+        String sqlQuery = "Select * from auditoriums WHERE id = ?";
+        List<Auditorium> auditoriums = jdbcTemplate.query(sqlQuery, new Object[]{id}, new AuditoriumRowMapper(auditoriumSeatDAO));
         return auditoriums.size() > 0 ? auditoriums.get(0) : null;
     }
 
     @Override
     public Auditorium add(Auditorium auditorium) {
-        String sqlquery = "INSERT INTO auditoriums(name, number_seats) VALUES (?, ?)";
+        String sqlQuery = "INSERT INTO auditoriums(name) VALUES (?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int update = jdbcTemplate.update(connection -> {
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlquery, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, auditorium.getName());
-            preparedStatement.setDouble(2, auditorium.getNumberOfSeats());
             return preparedStatement;
         }, keyHolder);
         auditorium.setId(keyHolder.getKeyList().size() == 0 ? null : (Integer) keyHolder.getKeyList().get(0).get("id"));
@@ -50,14 +53,14 @@ public class AuditoriumJdbcDAOImpl implements AuditoriumDAO{
 
     @Override
     public Auditorium save(Auditorium auditorium) {
-        String sqlquery = "UPDATE auditoriums SET name = ?, number_seats = ? where id = ?";
-        jdbcTemplate.update(sqlquery, auditorium.getName(), auditorium.getNumberOfSeats(), auditorium.getId());
+        String sqlQuery = "UPDATE auditoriums SET name = ? where id = ?";
+        jdbcTemplate.update(sqlQuery, auditorium.getName(), auditorium.getId());
         return auditorium;
     }
 
     @Override
     public void delete(int id) {
-        String sqlquery = "DELETE FROM auditoriums where id = ?";
-        jdbcTemplate.update(sqlquery, id);
+        String sqlQuery = "DELETE FROM auditoriums where id = ?";
+        jdbcTemplate.update(sqlQuery, id);
     }
 }

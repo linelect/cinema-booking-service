@@ -22,17 +22,17 @@ public class UserJdbcDAOImpl implements UserDAO {
 
     @Override
     public User save(User user) {
-        String sqlquery = "UPDATE USERS SET name = ?, email = ? where id = ?";
-        jdbcTemplate.update(sqlquery, user.getName(), user.getEmail(), user.getId());
+        String sqlQuery = "UPDATE USERS SET name = ?, email = ? where id = ?";
+        jdbcTemplate.update(sqlQuery, user.getName(), user.getEmail(), user.getId());
         return user;
     }
 
     @Override
     public User add(User user) {
-        String sqlquery = "INSERT INTO users(name, email) VALUES (?, ?)";
+        String sqlQuery = "INSERT INTO users(name, email) VALUES (?, ?)";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
-            PreparedStatement statement = con.prepareStatement(sqlquery, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = con.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
             return statement;
@@ -43,27 +43,27 @@ public class UserJdbcDAOImpl implements UserDAO {
 
     @Override
     public void delete(int id) {
-        String sqlquery = "DELETE FROM USERS where id = ?";
-        jdbcTemplate.update(sqlquery, id);
+        String sqlQuery = "DELETE FROM USERS where id = ?";
+        jdbcTemplate.update(sqlQuery, id);
     }
 
     @Override
     public User getById(int id) {
-        String sqlquery = "Select * from users WHERE id = ?";
-        List<User> users = jdbcTemplate.query(sqlquery, new Object[]{id}, new UserRowMapper());
+        String sqlQuery = "Select * from users WHERE id = ?";
+        List<User> users = jdbcTemplate.query(sqlQuery, new Object[]{id}, new UserRowMapper());
         return users.size() > 0 ? users.get(0) : null;
     }
 
     @Override
     public User getByEmail(String email) {
-        String sqlquery = "Select * from users WHERE email = ?";
-        List<User> users = jdbcTemplate.query(sqlquery, new Object[]{email}, new UserRowMapper());
+        String sqlQuery = "Select * from users WHERE email = ?";
+        List<User> users = jdbcTemplate.query(sqlQuery, new Object[]{email}, new UserRowMapper());
         return users.size() > 0 ? users.get(0) : null;
     }
 
     @Override
     public List<User> getAll() {
-        String sqlquery = "Select * from users";
-        return jdbcTemplate.query(sqlquery, new UserRowMapper());
+        String sqlQuery = "Select * from users";
+        return jdbcTemplate.query(sqlQuery, new UserRowMapper());
     }
 }

@@ -4,24 +4,23 @@ import com.linelect.dao.AuditoriumSeatDAO;
 import com.linelect.dao.EventDAO;
 import com.linelect.dao.UserDAO;
 import com.linelect.model.Ticket;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component
+
 public class TicketRowMapper implements RowMapper<Ticket> {
 
-    @Autowired
     private EventDAO eventDAO;
-
-    @Autowired
     private UserDAO userDAO;
-
-    @Autowired
     private AuditoriumSeatDAO auditoriumSeatDAO;
+
+    public TicketRowMapper(EventDAO eventDAO, UserDAO userDAO, AuditoriumSeatDAO auditoriumSeatDAO) {
+        this.eventDAO = eventDAO;
+        this.userDAO = userDAO;
+        this.auditoriumSeatDAO = auditoriumSeatDAO;
+    }
 
     @Override
     public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {

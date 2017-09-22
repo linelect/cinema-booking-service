@@ -1,11 +1,10 @@
 package com.linelect.dao.impl.jdbc;
 
+import com.linelect.dao.AuditoriumDAO;
 import com.linelect.dao.AuditoriumSeatDAO;
 import com.linelect.mappers.AuditoriumSeatRowMapper;
-import com.linelect.mappers.EventRowMapper;
 import com.linelect.model.Auditorium;
 import com.linelect.model.AuditoriumSeat;
-import com.linelect.model.Event;
 import com.linelect.model.SeatType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Component
@@ -26,37 +24,40 @@ public class AuditoriumSeatJdbcDAOImpl implements AuditoriumSeatDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private AuditoriumDAO auditoriumDAO;
+
     @Override
     public List<AuditoriumSeat> getAll() {
-        String sqlquery = "Select * from auditorium_seats";
-        return jdbcTemplate.query(sqlquery, new AuditoriumSeatRowMapper());
+        String sqlQuery = "Select * from auditorium_seats";
+        return jdbcTemplate.query(sqlQuery, new AuditoriumSeatRowMapper(auditoriumDAO));
     }
 
     @Override
     public List<AuditoriumSeat> getByAuditorium(Auditorium auditorium) {
-        String sqlquery = "Select * from auditorium_seats WHERE auditorium_id = ?";
-        return jdbcTemplate.query(sqlquery, new Object[]{auditorium.getId()}, new AuditoriumSeatRowMapper());
+        String sqlQuery = "Select * from auditorium_seats WHERE auditorium_id = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{auditorium.getId()}, new AuditoriumSeatRowMapper(auditoriumDAO));
     }
 
     @Override
     public List<AuditoriumSeat> getBySeatType(SeatType seatType) {
-        String sqlquery = "Select * from auditorium_seats WHERE seat_type = ?";
-        return jdbcTemplate.query(sqlquery, new Object[]{seatType.name()}, new AuditoriumSeatRowMapper());
+        String sqlQuery = "Select * from auditorium_seats WHERE seat_type = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{seatType.name()}, new AuditoriumSeatRowMapper(auditoriumDAO));
     }
 
     @Override
     public AuditoriumSeat getById(int id) {
-        String sqlquery = "Select * from auditorium_seats WHERE id = ?";
-        List<AuditoriumSeat> auditoriumSeats = jdbcTemplate.query(sqlquery, new Object[]{id}, new AuditoriumSeatRowMapper());
+        String sqlQuery = "Select * from auditorium_seats WHERE id = ?";
+        List<AuditoriumSeat> auditoriumSeats = jdbcTemplate.query(sqlQuery, new Object[]{id}, new AuditoriumSeatRowMapper(auditoriumDAO));
         return auditoriumSeats.size() > 0 ? auditoriumSeats.get(0) : null;
     }
 
     @Override
     public AuditoriumSeat add(AuditoriumSeat auditoriumSeat) {
-        String sqlquery = "INSERT INTO auditorium_seats(number, seat_row, auditorium_id, seat_type) VALUES (?, ?, ?, ?)";
+        String sqlQuery = "INSERT INTO auditorium_seats(number, seat_row, auditorium_id, seat_type) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlquery, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, auditoriumSeat.getNumber());
             preparedStatement.setInt(2, auditoriumSeat.getRow());
             preparedStatement.setInt(3, auditoriumSeat.getAuditorium().getId());
@@ -69,15 +70,15 @@ public class AuditoriumSeatJdbcDAOImpl implements AuditoriumSeatDAO {
 
     @Override
     public AuditoriumSeat save(AuditoriumSeat auditoriumSeat) {
-        String sqlquery = "UPDATE auditorium_seats SET number = ?, seat_row = ?, auditorium_id = ?, seat_type = ? where id = ?";
-        jdbcTemplate.update(sqlquery, auditoriumSeat.getNumber(), auditoriumSeat.getRow(), auditoriumSeat.getAuditorium().getId(),
+        String sqlQuery = "UPDATE auditorium_seats SET number = ?, seat_row = ?, auditorium_id = ?, seat_type = ? where id = ?";
+        jdbcTemplate.update(sqlQuery, auditoriumSeat.getNumber(), auditoriumSeat.getRow(), auditoriumSeat.getAuditorium().getId(),
                 auditoriumSeat.getSeatType().ordinal());
         return auditoriumSeat;
     }
 
     @Override
     public void delete(int id) {
-        String sqlquery = "DELETE FROM auditorium_seats where id = ?";
-        jdbcTemplate.update(sqlquery, id);
+        String sqlQuery = "DELETE FROM auditorium_seats where id = ?";
+        jdbcTemplate.update(sqlQuery, id);
     }
 }

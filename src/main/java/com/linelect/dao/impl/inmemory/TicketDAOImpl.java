@@ -1,13 +1,12 @@
 package com.linelect.dao.impl.inmemory;
 
-import com.linelect.dao.InMemoryDataBaseSimulator;
+import com.linelect.InMemoryDataBaseSimulator;
 import com.linelect.dao.TicketDAO;
 import com.linelect.model.Event;
 import com.linelect.model.Ticket;
 import com.linelect.model.User;
 import org.springframework.stereotype.Component;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 import java.util.stream.Collectors;
 

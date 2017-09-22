@@ -32,7 +32,6 @@ public class GlobalConfig {
         Auditorium auditorium = new Auditorium();
         auditorium.setId(1);
         auditorium.setName("Auditorium 1");
-        auditorium.setNumberOfSeats(30);
         return auditorium;
     }
 
